@@ -2,8 +2,8 @@
 // Empiler des formes pour construire un quartier suprématiste
 
 
-$vpr = [ 55.00, 0.00, 25.00 ]; // rotation de la vue par défaut
-$vpt = [ 2.11, -2.02, 11.62 ]; // translation de la vue par défaut
+$vpt = [ 0, 0, 12 ]; // translation de la vue par défaut
+$vpr = [ 60, 0.00, 45 ]; // rotation de la vue par défaut
 $vpd = 190;
 
 tailledebloc = 15; // taille de nos immeubles
@@ -69,10 +69,12 @@ translate(lespositions[etape]){
 module tour(etape){
 translate(lespositions[etape]){
 	union() {
-		cube(un_bloc);
+		cube(un_bloc, un_bloc, un_bloc);
+        
 		translate([sixieme_bloc,sixieme_bloc,un_bloc]){
 		cube([deuxtiers_bloc,deuxtiers_bloc,deuxtiers_bloc]);
 		}}}}
+    
         
 module fleche(etape){
 translate(lespositions[etape]){
@@ -99,7 +101,7 @@ fleche(4);
 tour(5);
 tour(6);
 fleche(7);
-tour(8);
+angle(8);
 angle(9);
 tour(10);
 fleche(11);
