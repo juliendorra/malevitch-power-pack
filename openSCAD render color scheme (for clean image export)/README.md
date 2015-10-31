@@ -19,3 +19,7 @@ If OpenSCAD is on your Applications folder on OS X, the command should be
 Here is the result:
 
 ![./command line image export example](./image-export-example.png)
+
+Here is a result from an older version of the code:
+
+![./command line image export example](./older-image-export-example.png)
