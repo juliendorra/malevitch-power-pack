@@ -50,43 +50,63 @@ lespositions = [
 
 echo (lespositions);
 
+// un tableau pour créer des décalages vers des 4 angles selon la position sur la grille
+lesdecalages = [
+[sixieme_bloc, sixieme_bloc, 0]
+,[-sixieme_bloc, sixieme_bloc, 0]
+,[sixieme_bloc, -sixieme_bloc, 0],
+,[-sixieme_bloc, -sixieme_bloc, 0]
+];
+
 module angle(etape){
 translate(lespositions[etape]){
 	union() {
         
         cube([demi_bloc,un_bloc,tiers_bloc]); // bas 
         
-        translate([tiers_bloc,tiers_bloc,sixieme_bloc]){ // haut 
+        translate([tiers_bloc,tiers_bloc,0]) // haut 
             cube([tiers_bloc,,un_bloc,un_bloc]);
-          } 
+          
         
-          translate([demi_bloc,demi_bloc,0]){ // droite
+          translate([demi_bloc,demi_bloc,0]) // droite
             cube([demi_bloc,,tiers_bloc,tiers_bloc]);
-          } 
+          
           
         }}}
 
+module building(etape){
+translate(lespositions[etape]){
+    
+    hauteur = ((etape%3)+2)/2;
+    
+	union() {
+        
+        
+		translate([sixieme_bloc,tiers_bloc,un_bloc]) // haut
+		cube([deuxtiers_bloc,tiers_bloc,tiers_bloc*hauteur]);
+		
+        
+        cube([un_bloc, deuxtiers_bloc, un_bloc]); // bas
+       }}}
+       
+      
+       
 module tour(etape){
 translate(lespositions[etape]){
-	union() {
-		cube(un_bloc, un_bloc, un_bloc);
-        
-		translate([sixieme_bloc,sixieme_bloc,un_bloc]){
-		cube([deuxtiers_bloc,deuxtiers_bloc,deuxtiers_bloc]);
-		}}}}
     
-        
-module fleche(etape){
-translate(lespositions[etape]){
+    decalage = lesdecalages [etape%4];
+    
 	union() {
-		cube([un_bloc,un_bloc,deuxtiers_bloc]); // bas
+		cube([un_bloc,un_bloc,sixieme_bloc]); // bas
         
-		translate([sixieme_bloc,sixieme_bloc,deuxtiers_bloc])
-        {cube([deuxtiers_bloc,deuxtiers_bloc,deuxtiers_bloc]);}
+		translate([sixieme_bloc,sixieme_bloc,sixieme_bloc])
+            translate(decalage/3)
+            cube([deuxtiers_bloc,deuxtiers_bloc,un_bloc]); // milieu
         
        translate([tiers_bloc,tiers_bloc,un_bloc])
-        {cube([tiers_bloc,tiers_bloc,un_bloc*1.5]);}
-        }}}
+           translate(decalage)
+           cube([tiers_bloc,tiers_bloc,un_bloc*1.25]); // haut 
+       }}}
 
 translate([ -un_bloc*3, -un_bloc*2, 0 ]){ // recentrage
 union() {
@@ -95,21 +115,21 @@ union() {
 
 
 angle(1);
-tour(2);
+building(2);
 angle(3);
-fleche(4);
-tour(5);
-tour(6);
-fleche(7);
+tour(4);
+building(5);
+building(6);
+tour(7);
 angle(8);
 angle(9);
-tour(10);
-fleche(11);
+building(10);
+tour(11);
 angle(12);
-tour(13);
+building(13);
 angle(14);
-tour(15);
-tour(16);
+building(15);
+building(16);
     
     
 // ici c'est la fin !
