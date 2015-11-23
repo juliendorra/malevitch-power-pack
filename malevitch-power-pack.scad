@@ -2,9 +2,9 @@
 // Empiler des formes pour construire un quartier suprématiste
 
 
-//$vpt = [ 0, 0, 12 ]; // translation de la vue par défaut
-//$vpr = [ 60, 0.00, 45 ]; // rotation de la vue par défaut
-//$vpd = 190;
+$vpt = [ 0, 0, 12 ]; // translation de la vue par défaut
+$vpr = [ 60, 0.00, 45 ]; // rotation de la vue par défaut
+$vpd = 190;
 
 tailledebloc = 15; // taille de nos immeubles
 
