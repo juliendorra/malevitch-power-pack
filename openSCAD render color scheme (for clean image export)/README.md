@@ -2,7 +2,7 @@ This JSON files is a custom render scheme with white background (derived from De
 
 On OS X, to use it in the editor preview:
 
-- Place it in OpenSCAD/Contents/Resources/color-schemes/render/
+- Place it in Applications/OpenSCAD/Contents/Resources/color-schemes/render/
  - Restart the app
  - Select it in the preferences
 
